@@ -29,7 +29,7 @@ export async function createMailTransport() {
 }
 
 /** Buzón donde recibes contacto y bolsa de trabajo si no defines CONTACT_TO. */
-const DEFAULT_INBOX = "lizetmc08@gmail.com";
+const DEFAULT_INBOX = "culturaregenerativaac@gmail.com";
 
 export function getInboxAddress(): string {
   return process.env.CONTACT_TO?.trim() || DEFAULT_INBOX;
