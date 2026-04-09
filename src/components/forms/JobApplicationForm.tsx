@@ -4,6 +4,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { jobApplicationVacancyOptions } from "@/lib/bolsa-trabajo";
 import { isFormEmailValid } from "@/lib/form-email";
+import { JOB_APPLICATION_MAX_CV_BYTES } from "@/lib/job-application-limits";
+import { parseApiJsonBody } from "@/lib/parse-api-json";
 
 export function JobApplicationForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">(
@@ -21,6 +23,14 @@ export function JobApplicationForm() {
       setMessage("Correo no válido.");
       return;
     }
+    const cv = fd.get("cv");
+    if (cv instanceof File && cv.size > JOB_APPLICATION_MAX_CV_BYTES) {
+      setStatus("error");
+      setMessage(
+        "El CV supera 4 MB. Comprime el PDF o adjunta una versión más ligera (límite del sitio web).",
+      );
+      return;
+    }
     setStatus("loading");
     setMessage("");
     try {
@@ -28,11 +38,18 @@ export function JobApplicationForm() {
         method: "POST",
         body: fd,
       });
-      const data = (await res.json()) as {
+      const raw = await res.text();
+      const parsed = parseApiJsonBody<{
         message?: string;
         error?: string;
         delivered?: boolean;
-      };
+      }>(raw, res.status);
+      if (!parsed.ok) {
+        setStatus("error");
+        setMessage(parsed.message);
+        return;
+      }
+      const data = parsed.data;
       if (!res.ok) {
         setStatus("error");
         setMessage(data.error || "No se pudo enviar.");
@@ -48,7 +65,7 @@ export function JobApplicationForm() {
       form.reset();
     } catch {
       setStatus("error");
-      setMessage("Error de red.");
+      setMessage("No se pudo conectar. Revisa tu red o inténtalo más tarde.");
     }
   }
 
@@ -113,7 +130,7 @@ export function JobApplicationForm() {
       </div>
       <div>
         <label htmlFor="ja-cv" className="text-sm font-medium text-zinc-800 dark:text-zinc-200">
-          CV (PDF o PNG, máx. recomendado 5&nbsp;MB)
+          CV (PDF o PNG, máx. 4&nbsp;MB; límite del alojamiento web)
         </label>
         <input
           id="ja-cv"

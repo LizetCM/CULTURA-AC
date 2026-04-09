@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { formEmailSchema } from "@/lib/form-email";
+import { JOB_APPLICATION_MAX_CV_BYTES } from "@/lib/job-application-limits";
 import {
   createMailTransport,
   escapeHtmlForMail,
@@ -7,8 +8,6 @@ import {
   getInboxAddress,
   isSmtpConfigured,
 } from "@/lib/mail";
-
-const MAX_CV_BYTES = 5 * 1024 * 1024;
 
 export async function POST(req: Request) {
   const contentType = req.headers.get("content-type") || "";
@@ -42,9 +41,9 @@ export async function POST(req: Request) {
 
   const cvFile = file instanceof File && file.size > 0 ? file : null;
   if (cvFile) {
-    if (cvFile.size > MAX_CV_BYTES) {
+    if (cvFile.size > JOB_APPLICATION_MAX_CV_BYTES) {
       return NextResponse.json(
-        { error: "El CV no debe superar 5 MB." },
+        { error: "El CV no debe superar 4 MB (límite del alojamiento web)." },
         { status: 400 },
       );
     }
