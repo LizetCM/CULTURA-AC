@@ -34,6 +34,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Barra fija compacta (~3.5rem) + margen al usar anclas # */
+html {
+  scroll-padding-top: 4.5rem;
+}
+
 /* Tema documento siempre claro (alineado al diseño); modo oscuro opcional vía clase .dark en html. */
 body {
   background: var(--background);

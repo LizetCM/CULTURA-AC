@@ -61,7 +61,7 @@ export default function ProyectosPage() {
             programas específicos.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <ButtonLink href="/contacto">Contactar</ButtonLink>
+            <ButtonLink href="/#contacto">Contactar</ButtonLink>
             <ButtonLink href="/donaciones" variant="outline">
               Apoyar económicamente
             </ButtonLink>

@@ -4,6 +4,9 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/home/Reveal";
 import { cn } from "@/lib/cn";
+import { BolsaDeTrabajoBody } from "@/components/bolsa/BolsaDeTrabajoBody";
+import { ContactPanel } from "@/components/contact/ContactPanel";
+import { ParticiparBolsaIntro } from "@/components/participar/ParticiparBolsaIntro";
 import {
   colaboradores,
   colaboradorCategoryLabels,
@@ -155,32 +158,18 @@ export function HomePageContent() {
             Asociación Civil
           </p>
           <h1 className="home-animate-hero home-animate-hero-delay-1 max-w-4xl text-balance font-semibold tracking-tight text-white text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
-            Cultura A.C.
+            {site.name}
           </h1>
           <p className="home-animate-hero home-animate-hero-delay-2 mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-white/85 sm:text-xl md:text-2xl">
             Impulsamos el desarrollo cultural y social a través de proyectos
             que transforman comunidades.
           </p>
-          <div className="home-animate-hero home-animate-hero-delay-3 mt-12 flex w-full flex-col items-stretch justify-center gap-4 sm:flex-row sm:justify-center">
-            <ButtonLink
-              href="/donaciones"
-              className="h-14 min-w-[11rem] bg-accent-cyan px-10 text-base text-white shadow-lg shadow-black/25 hover:bg-accent-cyan-hover dark:text-white"
-            >
-              Donar
-            </ButtonLink>
-            <ButtonLink
-              href="/participar"
-              variant="outline"
-              className="h-14 min-w-[11rem] border-white/35 bg-white/10 px-10 text-base text-white backdrop-blur-sm transition hover:-translate-y-0.5 hover:bg-white/18"
-            >
-              Participar
-            </ButtonLink>
-          </div>
         </Container>
       </section>
 
       {/* ¿Quiénes somos? / Objetivo — tipografía y bloque tipo referencia, más aire */}
       <section
+        id="sobre-nosotros"
         className="bg-surface-muted py-20 sm:py-28 md:py-32 dark:bg-zinc-900"
         aria-labelledby="quienes-heading"
       >
@@ -222,6 +211,7 @@ export function HomePageContent() {
 
       {/* Programas — estilo referencia: imagen + bloque teal (título en pastilla + cuerpo) */}
       <section
+        id="proyectos"
         className="bg-white py-20 sm:py-28 md:py-36 dark:bg-zinc-950"
         aria-labelledby="programas-heading"
       >
@@ -300,6 +290,44 @@ export function HomePageContent() {
                 </article>
               </Reveal>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      <section
+        id="participar"
+        className="bg-white py-16 sm:py-20 md:py-24 dark:bg-zinc-950"
+        aria-label="Contratación de mujeres y participación"
+      >
+        <ParticiparBolsaIntro
+          ctaHref="/#bolsa-de-trabajo"
+          titleAs="h2"
+        />
+      </section>
+
+      <section
+        id="bolsa-de-trabajo"
+        className="border-y border-zinc-200/80 bg-surface-muted py-16 sm:py-20 md:py-24 dark:border-zinc-800 dark:bg-zinc-900/40"
+        aria-labelledby="bolsa-en-inicio-heading"
+      >
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-green-900/85 dark:text-green-200/90">
+              Bolsa de trabajo
+            </p>
+            <h2
+              id="bolsa-en-inicio-heading"
+              className="mt-4 text-balance text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl"
+            >
+              Consejo consultivo, voluntariado y aplicación
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-zinc-700 sm:text-lg">
+              Elige el perfil o línea en el formulario y adjunta tu CV en PDF.
+              Si tienes dudas, escríbenos desde la sección de contacto.
+            </p>
+          </div>
+          <div className="mx-auto mt-12 max-w-4xl">
+            <BolsaDeTrabajoBody showCrossLinks={false} />
           </div>
         </Container>
       </section>
@@ -545,6 +573,28 @@ export function HomePageContent() {
               </div>
             </Reveal>
           </div>
+        </Container>
+      </section>
+
+      <section
+        id="contacto"
+        className="border-t border-zinc-200/80 bg-white py-16 sm:py-20 md:py-24 dark:border-zinc-800 dark:bg-zinc-950"
+        aria-labelledby="contacto-inicio-heading"
+      >
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2
+              id="contacto-inicio-heading"
+              className="text-balance text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl"
+            >
+              Contacto
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-pretty text-base text-zinc-600 dark:text-zinc-400">
+              Alianzas, voluntariado y consultas generales. Escríbenos o usa el
+              formulario.
+            </p>
+          </div>
+          <ContactPanel className="mt-12" />
         </Container>
       </section>
     </main>

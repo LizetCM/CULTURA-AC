@@ -3,14 +3,7 @@ import { Logo } from "@/components/brand/Logo";
 import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
-
-const links: Array<{ href: string; label: string }> = [
-  { href: "/sobre-nosotros", label: "Sobre nosotros" },
-  { href: "/proyectos", label: "Proyectos" },
-  { href: "/contratacion-mujeres", label: "Contratación de mujeres" },
-  { href: "/bolsa-de-trabajo", label: "Bolsa de trabajo" },
-  { href: "/contacto", label: "Contacto" },
-];
+import { HOME_NAV_LINKS } from "@/lib/home-nav";
 
 export function Nav({ className }: { className?: string }) {
   return (
@@ -20,11 +13,11 @@ export function Nav({ className }: { className?: string }) {
         className,
       )}
     >
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Logo />
+      <Container className="flex h-14 items-center justify-between gap-4">
+        <Logo compact />
 
-        <nav className="hidden items-center gap-6 lg:flex" aria-label="Principal">
-          {links.map((l) => (
+        <nav className="hidden items-center gap-5 lg:flex" aria-label="Principal">
+          {HOME_NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
@@ -39,7 +32,7 @@ export function Nav({ className }: { className?: string }) {
           <ButtonLink href="/donaciones" variant="outline" size="sm">
             Donar
           </ButtonLink>
-          <ButtonLink href="/participar" variant="primary" size="sm">
+          <ButtonLink href="/#participar" variant="primary" size="sm">
             Participar
           </ButtonLink>
         </div>

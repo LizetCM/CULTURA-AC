@@ -43,7 +43,7 @@ export default function ContratacionMujeresPage() {
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <ButtonLink
-            href="/contacto"
+            href="/#contacto"
             className="border-0 bg-white text-zinc-900 hover:bg-zinc-100"
           >
             Solicitar talento
@@ -72,7 +72,7 @@ export default function ContratacionMujeresPage() {
 
       <p className="mt-12 text-sm text-zinc-500">
         <Link
-          href="/bolsa-de-trabajo"
+          href="/#bolsa-de-trabajo"
           className="font-medium text-brand-teal hover:underline dark:text-accent-cyan"
         >
           Ver bolsa de trabajo

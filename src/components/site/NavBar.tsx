@@ -1,19 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/brand/Logo";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
+import { HOME_NAV_LINKS } from "@/lib/home-nav";
 
-const links: Array<{ href: string; label: string }> = [
-  { href: "/sobre-nosotros", label: "Sobre nosotros" },
-  { href: "/proyectos", label: "Proyectos" },
-  { href: "/contratacion-mujeres", label: "Contratación de mujeres" },
-  { href: "/bolsa-de-trabajo", label: "Bolsa de trabajo" },
-  { href: "/contacto", label: "Contacto" },
-];
+function scrollToHash(id: string) {
+  const el = document.getElementById(id);
+  el?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
 export function NavBar() {
   const pathname = usePathname();
@@ -23,7 +21,7 @@ export function NavBar() {
   useEffect(() => {
     if (!isHome) return;
 
-    const onScroll = () => setScrolled(window.scrollY > 48);
+    const onScroll = () => setScrolled(window.scrollY > 32);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -31,26 +29,40 @@ export function NavBar() {
 
   const glassOnHero = isHome && !scrolled;
 
+  const onHashNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      if (!href.startsWith("/#")) return;
+      const id = href.slice(2);
+      if (pathname === "/") {
+        e.preventDefault();
+        scrollToHash(id);
+        window.history.replaceState(null, "", href);
+      }
+    },
+    [pathname],
+  );
+
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 h-16 transition-[background-color,border-color,box-shadow] duration-300",
+        "fixed inset-x-0 top-0 z-50 h-14 transition-[background-color,border-color,box-shadow] duration-300",
         glassOnHero
           ? "border-b border-white/10 bg-zinc-950/35 shadow-none backdrop-blur-md"
           : "border-b border-zinc-200/80 bg-white/90 shadow-sm shadow-zinc-900/5 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/90",
       )}
     >
-      <Container className="flex h-full items-center justify-between gap-4">
-        <Logo inverse={glassOnHero} />
+      <Container className="flex h-full items-center justify-between gap-3">
+        <Logo inverse={glassOnHero} compact />
 
         <nav
-          className="hidden items-center gap-6 lg:flex"
+          className="hidden items-center gap-5 lg:flex"
           aria-label="Principal"
         >
-          {links.map((l) => (
+          {HOME_NAV_LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
+              onClick={(e) => onHashNavClick(e, l.href)}
               className={cn(
                 "text-sm transition-colors",
                 glassOnHero
@@ -65,7 +77,8 @@ export function NavBar() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
-            href="/participar"
+            href="/#participar"
+            onClick={(e) => onHashNavClick(e, "/#participar")}
             className={cn(
               "hidden text-sm font-medium transition-colors sm:inline",
               glassOnHero
@@ -78,7 +91,7 @@ export function NavBar() {
           <Link
             href="/donaciones"
             className={cn(
-              "inline-flex h-10 items-center justify-center rounded-full px-5 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg",
+              "inline-flex h-9 items-center justify-center rounded-full px-4 text-sm font-semibold text-white shadow-md transition hover:-translate-y-0.5 hover:shadow-lg sm:px-5",
               "bg-accent-cyan hover:bg-accent-cyan-hover",
             )}
           >

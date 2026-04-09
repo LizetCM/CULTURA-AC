@@ -4,18 +4,27 @@ import { cn } from "@/lib/cn";
 
 type ParticiparBolsaIntroProps = {
   className?: string;
+  /** Destino del botón (p. ej. ancla en inicio). */
+  ctaHref?: string;
+  /** En inicio ya existe h1 en el hero; usar h2 evita dos h1. */
+  titleAs?: "h1" | "h2";
 };
 
-export function ParticiparBolsaIntro({ className }: ParticiparBolsaIntroProps) {
+export function ParticiparBolsaIntro({
+  className,
+  ctaHref = "/#bolsa-de-trabajo",
+  titleAs = "h1",
+}: ParticiparBolsaIntroProps) {
+  const TitleTag = titleAs;
   return (
     <Container className={cn("relative", className)}>
       <div className="mx-auto max-w-3xl [font-family:var(--font-inter),ui-sans-serif,system-ui,sans-serif]">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-zinc-500 dark:text-zinc-400">
           Participar
         </p>
-        <h1 className="mt-4 text-balance text-center text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
+        <TitleTag className="mt-4 text-balance text-center text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl md:text-5xl dark:text-zinc-50">
           Bolsa de Trabajo para Mujeres
-        </h1>
+        </TitleTag>
         <div className="mx-auto mt-8 max-w-2xl text-left text-pretty text-lg leading-relaxed text-zinc-600 sm:text-xl dark:text-zinc-400">
           <p>
             En nuestra asociación, estamos convencidas de que el talento
@@ -44,7 +53,7 @@ export function ParticiparBolsaIntro({ className }: ParticiparBolsaIntroProps) {
         </div>
         <div className="mt-12 flex justify-center">
           <ButtonLink
-            href="/bolsa-de-trabajo"
+            href={ctaHref}
             className="h-14 px-10 text-base transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-zinc-900/15"
           >
             Sumar mi talento

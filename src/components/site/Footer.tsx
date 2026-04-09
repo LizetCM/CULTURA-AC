@@ -24,13 +24,28 @@ export function Footer() {
               </div>
               <ul className="space-y-2 text-zinc-600 dark:text-zinc-400">
                 <li>
-                  <Link href="/sobre-nosotros" className="hover:text-zinc-900">
+                  <Link href="/#sobre-nosotros" className="hover:text-zinc-900">
                     Sobre nosotros
                   </Link>
                 </li>
                 <li>
-                  <Link href="/proyectos" className="hover:text-zinc-900">
+                  <Link href="/#proyectos" className="hover:text-zinc-900">
                     Proyectos
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#participar" className="hover:text-zinc-900">
+                    Contratación de mujeres
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#bolsa-de-trabajo" className="hover:text-zinc-900">
+                    Bolsa de trabajo
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#contacto" className="hover:text-zinc-900">
+                    Contacto
                   </Link>
                 </li>
                 <li>

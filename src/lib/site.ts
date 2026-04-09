@@ -51,7 +51,7 @@ function resolvePublicContactEmail(): string {
 }
 
 export const site = {
-  name: "Cultura A.C.",
+  name: "Cultiva A.C.",
   url: resolvePublicSiteUrl(),
   tagline: "Cultura que transforma comunidades.",
   description:
