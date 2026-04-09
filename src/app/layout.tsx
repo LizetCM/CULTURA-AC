@@ -61,8 +61,9 @@ export default function RootLayout({
     <html
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} ${inter.variable} h-full antialiased`}
+      style={{ colorScheme: "light" }}
     >
-      <body className="flex min-h-full flex-col bg-white text-zinc-950 dark:bg-zinc-950 dark:text-zinc-50">
+      <body className="flex min-h-full flex-col bg-white text-zinc-950">
         <NavBar />
         <MainChrome>{children}</MainChrome>
         <Footer />

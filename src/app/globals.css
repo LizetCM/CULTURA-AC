@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Sin .dark en <html>, las utilidades dark: no aplican: mismo aspecto claro en Vercel y local. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -11,6 +14,11 @@
   --accent-cyan-hover: #15803d;
   --surface-muted: #f3faf6;
   --surface-mint: #e8f5ec;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -26,13 +34,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Tema documento siempre claro (alineado al diseño); modo oscuro opcional vía clase .dark en html. */
 body {
   background: var(--background);
   color: var(--foreground);
