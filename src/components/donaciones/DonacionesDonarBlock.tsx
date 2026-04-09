@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { DonatePanel } from "@/components/forms/DonatePanel";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
 
 type DonacionesDonarBlockProps = {
   stripeReady: boolean;
@@ -64,8 +65,15 @@ export function DonacionesDonarBlock({ stripeReady }: DonacionesDonarBlockProps)
             Formulario de contacto
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            Alternativa sin pasarela: envíanos propuesta de donación, datos de
-            facturación o dudas.
+            Alternativa sin pasarela: propuesta de donación, facturación o dudas.
+            El formulario y los correos se dirigen a{" "}
+            <a
+              href={`mailto:${site.contact.email}`}
+              className="font-medium text-brand-teal underline-offset-2 hover:underline dark:text-green-400"
+            >
+              {site.contact.email}
+            </a>
+            (mismo buzón si tienes configurado el envío SMTP en el servidor).
           </p>
           <div className="mt-8">
             <ContactForm defaultSubject="Propuesta de donación" />

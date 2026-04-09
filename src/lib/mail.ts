@@ -28,11 +28,13 @@ export async function createMailTransport() {
   });
 }
 
-/** Buzón donde recibes contacto y bolsa de trabajo si no defines CONTACT_TO. */
-const DEFAULT_INBOX = "culturaregenerativaac@gmail.com";
-
+/** Buzón: CONTACT_TO, o correo público (mismo que en la web), o valor por defecto. */
 export function getInboxAddress(): string {
-  return process.env.CONTACT_TO?.trim() || DEFAULT_INBOX;
+  return (
+    process.env.CONTACT_TO?.trim() ||
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ||
+    "culturaregenerativaac@gmail.com"
+  );
 }
 
 export function getFromAddress(): string {

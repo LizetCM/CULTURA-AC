@@ -227,12 +227,12 @@ export function HomePageContent() {
       >
         <Container>
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+            <p className="text-base font-medium text-zinc-600 sm:text-lg">
               ¡Únete a las actividades que tenemos disponibles!
             </p>
             <h2
               id="programas-heading"
-              className="font-display mt-4 text-balance text-4xl font-medium tracking-tight text-zinc-900 sm:text-5xl md:text-6xl dark:text-zinc-50"
+              className="mt-4 text-balance text-4xl font-bold tracking-tight text-brand-teal sm:text-5xl"
             >
               Programas
             </h2>
@@ -264,19 +264,19 @@ export function HomePageContent() {
                   </div>
                   <div className="flex flex-1 flex-col bg-[#166534] p-6 sm:p-7">
                     <div className="flex justify-center">
-                      <div className="max-w-full rounded-full bg-[#14532d] px-5 py-2.5 text-center shadow-sm">
-                        <h3 className="text-sm font-bold uppercase tracking-wide text-white">
+                      <div className="max-w-full rounded-full bg-[#14532d] px-5 py-3 text-center shadow-sm sm:px-6 sm:py-3.5">
+                        <h3 className="text-base font-bold uppercase tracking-wide text-white sm:text-lg">
                           {card.title}
                         </h3>
                       </div>
                     </div>
-                    <div className="mt-4 space-y-4 rounded-2xl rounded-tl-sm bg-[#4d7c62] p-5 text-sm leading-relaxed text-white shadow-inner">
+                    <div className="mt-4 space-y-4 rounded-2xl rounded-tl-sm bg-[#4d7c62] p-5 text-base leading-relaxed text-white shadow-inner sm:p-6 sm:text-lg">
                       {card.sections.map((section, si) => (
                         <div key={si}>
                           {section.heading ? (
                             <p
                               className={cn(
-                                "text-center text-sm font-semibold leading-snug tracking-tight text-white",
+                                "text-center text-base font-semibold leading-snug tracking-tight text-white sm:text-lg",
                                 si > 0 && "mt-4 border-t border-white/15 pt-4",
                               )}
                             >
@@ -285,8 +285,8 @@ export function HomePageContent() {
                           ) : null}
                           <ul
                             className={cn(
-                              "list-disc list-outside space-y-2.5 pl-4 text-left text-pretty marker:text-white/85",
-                              section.heading ? "mt-2" : "",
+                              "list-disc list-outside space-y-3 pl-5 text-left text-pretty marker:text-white/85",
+                              section.heading ? "mt-3" : "",
                             )}
                           >
                             {section.items.map((item, ii) => (
@@ -317,11 +317,11 @@ export function HomePageContent() {
             </p>
             <h2
               id="red-profesional-heading"
-              className="font-display mt-4 text-balance text-3xl font-medium tracking-tight text-zinc-900 sm:text-4xl md:text-[2.75rem] dark:text-zinc-50"
+              className="mt-4 text-balance text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl"
             >
               Alianzas operativas y consultores
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
+            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-zinc-700 sm:text-lg">
               Personas y organizaciones que fortalecen nuestros programas. En
               cada perfil encontrarás la trayectoria completa y la fotografía.
             </p>
@@ -339,7 +339,7 @@ export function HomePageContent() {
                     <p className="text-[0.7rem] font-semibold uppercase tracking-[0.18em] text-green-900/90 dark:text-green-200/90">
                       {colaboradorCategoryLabels[persona.category]}
                     </p>
-                    <h3 className="font-display mt-4 text-xl font-medium tracking-tight text-zinc-900 sm:text-2xl dark:text-zinc-50">
+                    <h3 className="mt-4 text-xl font-bold tracking-tight text-zinc-900 sm:text-2xl">
                       {persona.name}
                     </h3>
                   </div>
@@ -511,11 +511,11 @@ export function HomePageContent() {
             <Reveal>
               <h2
                 id="ubicacion-heading"
-                className="font-display text-3xl font-medium tracking-tight text-brand-teal sm:text-4xl dark:text-green-100"
+                className="text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl"
               >
                 ¿Dónde nos encontramos?
               </h2>
-              <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
+              <p className="mt-6 max-w-lg text-pretty text-base leading-relaxed text-zinc-700 sm:text-lg">
                 Nos ubicamos en <strong>{site.contact.venueName}</strong>,{" "}
                 {site.contact.address.replace(/^Real Campestre,\s*/, "")}.
                 Coordinamos proyectos y reuniones con aliados; agenda tu visita

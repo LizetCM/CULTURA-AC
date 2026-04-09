@@ -39,6 +39,17 @@ function resolvePublicSiteUrl(): string {
   return "http://localhost:3000";
 }
 
+/**
+ * Correo mostrado en la web, mailto y plantillas. Debe coincidir con el buzón
+ * real (mismo valor que CONTACT_TO / SMTP si aplica). Público: usar prefijo NEXT_PUBLIC_*.
+ */
+function resolvePublicContactEmail(): string {
+  return (
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ||
+    "culturaregenerativaac@gmail.com"
+  );
+}
+
 export const site = {
   name: "Cultura A.C.",
   url: resolvePublicSiteUrl(),
@@ -47,7 +58,7 @@ export const site = {
     "Asociación civil dedicada a impulsar iniciativas culturales con impacto social medible, transparencia y colaboración.",
   social: socialUrls,
   contact: {
-    email: "contacto@culturaac.org",
+    email: resolvePublicContactEmail(),
     /** Texto mostrado; tel: usa el mismo sin espacios (+52…) */
     phone: "+52 81 3255 7861",
     /** Persona de referencia para llamadas */
