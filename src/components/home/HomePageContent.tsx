@@ -190,11 +190,11 @@ export function HomePageContent() {
               <div className="max-w-xl">
                 <h2
                   id="quienes-heading"
-                  className="font-display text-3xl font-medium tracking-tight text-brand-teal sm:text-4xl dark:text-green-100"
+                  className="text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl"
                 >
                   ¿Quiénes somos?
                 </h2>
-                <p className="mt-6 text-pretty text-base leading-relaxed text-brand-teal/95 sm:text-lg dark:text-zinc-300">
+                <p className="mt-6 text-pretty text-base leading-relaxed text-zinc-700 sm:text-lg">
                   Somos una comunidad de personas y aliadas comprometidas con
                   ampliar el acceso a la cultura y fortalecer el tejido social.
                   Articulamos trabajo comunitario, educación cultural y
@@ -205,10 +205,10 @@ export function HomePageContent() {
             </Reveal>
             <Reveal delayMs={90}>
               <div className="max-w-xl lg:justify-self-end">
-                <h2 className="font-display text-3xl font-medium tracking-tight text-brand-teal sm:text-4xl dark:text-green-100">
+                <h2 className="text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl">
                   Objetivo
                 </h2>
-                <p className="mt-6 text-pretty text-base leading-relaxed text-brand-teal/95 sm:text-lg dark:text-zinc-300">
+                <p className="mt-6 text-pretty text-base leading-relaxed text-zinc-700 sm:text-lg">
                   Impulsar iniciativas culturales y educativas que generen
                   bienestar compartido, participación ciudadana e impacto
                   medible en las comunidades donde trabajamos; priorizando

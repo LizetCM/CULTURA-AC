@@ -30,11 +30,18 @@ export const socialLinks = [
   },
 ] as const;
 
+/** URL canónica del sitio: env explícita, luego Vercel, luego local. */
+function resolvePublicSiteUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim().replace(/\/+$/, "");
+  if (fromEnv) return fromEnv;
+  const vercel = process.env.VERCEL_URL?.trim().replace(/\/+$/, "");
+  if (vercel) return `https://${vercel}`;
+  return "http://localhost:3000";
+}
+
 export const site = {
   name: "Cultura A.C.",
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "") ||
-    "http://localhost:3000",
+  url: resolvePublicSiteUrl(),
   tagline: "Cultura que transforma comunidades.",
   description:
     "Asociación civil dedicada a impulsar iniciativas culturales con impacto social medible, transparencia y colaboración.",
