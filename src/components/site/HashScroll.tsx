@@ -12,7 +12,7 @@ export function HashScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname !== "/") return;
+    if (pathname !== "/" && pathname !== "/participar") return;
     const raw = window.location.hash.replace(/^#/, "");
     if (!raw) return;
     const id = decodeURIComponent(raw);

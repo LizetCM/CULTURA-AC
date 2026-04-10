@@ -2,6 +2,9 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/cn";
 
+const ctaClassName =
+  "inline-flex h-14 items-center justify-center rounded-full bg-zinc-900 px-10 text-base font-medium text-white transition hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-lg hover:shadow-zinc-900/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900/30 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200";
+
 type ParticiparBolsaIntroProps = {
   className?: string;
   /** Destino del botón (p. ej. ancla en inicio). */
@@ -12,7 +15,7 @@ type ParticiparBolsaIntroProps = {
 
 export function ParticiparBolsaIntro({
   className,
-  ctaHref = "/bolsa-de-trabajo",
+  ctaHref = "/participar#aplicar-bolsa",
   titleAs = "h1",
 }: ParticiparBolsaIntroProps) {
   const TitleTag = titleAs;
@@ -52,12 +55,15 @@ export function ParticiparBolsaIntro({
           </p>
         </div>
         <div className="mt-12 flex justify-center">
-          <ButtonLink
-            href={ctaHref}
-            className="h-14 px-10 text-base transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-zinc-900/15"
-          >
-            Sumar mi talento
-          </ButtonLink>
+          {ctaHref.startsWith("#") ? (
+            <a href={ctaHref} className={ctaClassName}>
+              Sumar mi talento
+            </a>
+          ) : (
+            <ButtonLink href={ctaHref} className={ctaClassName}>
+              Sumar mi talento
+            </ButtonLink>
+          )}
         </div>
       </div>
     </Container>

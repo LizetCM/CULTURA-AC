@@ -60,7 +60,7 @@ export function NavBar() {
         >
           {HOME_NAV_LINKS.map((l) => (
             <Link
-              key={l.href}
+              key={l.label}
               href={l.href}
               onClick={(e) => onHashNavClick(e, l.href)}
               className={cn(

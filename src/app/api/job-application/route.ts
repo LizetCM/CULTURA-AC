@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 import { formEmailSchema } from "@/lib/form-email";
+
+/** Envío con adjunto puede tardar en serverless (p. ej. Vercel). */
+export const maxDuration = 60;
 import { JOB_APPLICATION_MAX_CV_BYTES } from "@/lib/job-application-limits";
 import {
   createMailTransport,

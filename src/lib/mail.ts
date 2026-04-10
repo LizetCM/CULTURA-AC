@@ -38,8 +38,9 @@ export function getInboxAddress(): string {
 }
 
 export function getFromAddress(): string {
-  return (
-    process.env.SMTP_FROM?.trim() ||
-    process.env.SMTP_USER!.trim()
-  );
+  const from = process.env.SMTP_FROM?.trim();
+  if (from) return from;
+  const user = process.env.SMTP_USER?.trim();
+  if (user) return user;
+  return getInboxAddress();
 }

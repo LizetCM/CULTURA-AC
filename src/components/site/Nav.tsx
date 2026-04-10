@@ -19,7 +19,7 @@ export function Nav({ className }: { className?: string }) {
         <nav className="hidden items-center gap-5 lg:flex" aria-label="Principal">
           {HOME_NAV_LINKS.map((l) => (
             <Link
-              key={l.href}
+              key={l.label}
               href={l.href}
               className="text-sm text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
             >
