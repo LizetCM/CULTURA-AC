@@ -59,7 +59,7 @@ export function JobApplicationForm() {
       let msg = data.message || "¡Listo! Revisaremos tu perfil.";
       if (data.delivered === false) {
         msg +=
-          " No se mandó ningún correo: configura SMTP_PASS en .env.local y reinicia el servidor de desarrollo.";
+          " Revisa SMTP_HOST, SMTP_USER y SMTP_PASS en Vercel (Environment Variables → Production) o en .env.local para desarrollo.";
       }
       setMessage(msg);
       form.reset();

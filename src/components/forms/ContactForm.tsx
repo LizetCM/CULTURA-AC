@@ -54,7 +54,7 @@ export function ContactForm({ defaultSubject = "", className }: ContactFormProps
         "Gracias. Hemos recibido tu mensaje y te responderemos pronto.";
       if (data.delivered === false) {
         msg +=
-          " Aún no se envió correo: en el servidor falta SMTP_PASS (contraseña de aplicación de Gmail) en .env.local. Reinicia npm run dev tras guardar.";
+          " Configura SMTP_HOST, SMTP_USER y SMTP_PASS en Vercel (Production) o en .env.local si desarrollas en local.";
       }
       setFeedback(msg);
       e.currentTarget.reset();

@@ -1,8 +1,5 @@
 import { NextResponse } from "next/server";
 import { formEmailSchema } from "@/lib/form-email";
-
-/** Envío con adjunto puede tardar en serverless (p. ej. Vercel). */
-export const maxDuration = 60;
 import { JOB_APPLICATION_MAX_CV_BYTES } from "@/lib/job-application-limits";
 import {
   createMailTransport,
@@ -11,6 +8,9 @@ import {
   getInboxAddress,
   isSmtpConfigured,
 } from "@/lib/mail";
+
+/** Envío con adjunto puede tardar en serverless (p. ej. Vercel). */
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   const contentType = req.headers.get("content-type") || "";
@@ -80,7 +80,7 @@ export async function POST(req: Request) {
       ok: true,
       delivered: false,
       message:
-        "Solicitud registrada en consola. Configura SMTP_* en .env.local para envío por correo (ver .env.example).",
+        "El servidor no tiene configurado el correo (SMTP_HOST, SMTP_USER, SMTP_PASS en Vercel o .env.local). La solicitud no se envió por email.",
     });
   }
 
@@ -138,11 +138,12 @@ ${cvNote}
         : undefined,
     });
   } catch (err) {
-    console.error("[job-application] sendMail", err);
+    const detail = err instanceof Error ? err.message : String(err);
+    console.error("[job-application] sendMail", detail, err);
     return NextResponse.json(
       {
         error:
-          "No se pudo enviar el correo. Revisa SMTP_* o la contraseña de aplicación de Gmail.",
+          "No se pudo enviar el correo. Revisa en Vercel: SMTP_HOST, SMTP_USER y SMTP_PASS (contraseña de aplicación de Gmail, 16 caracteres). Detalle en logs del despliegue.",
       },
       { status: 502 },
     );

@@ -41,7 +41,7 @@ export async function POST(req: Request) {
       ok: true,
       delivered: false,
       message:
-        "Mensaje registrado. Configura SMTP_* en .env.local para envío real por correo (ver .env.example).",
+        "El servidor no tiene SMTP configurado (SMTP_HOST, SMTP_USER, SMTP_PASS en Vercel o .env.local). El mensaje no se envió por correo.",
     });
   }
 
@@ -68,11 +68,12 @@ export async function POST(req: Request) {
       html: htmlBody,
     });
   } catch (err) {
-    console.error("[contact] sendMail", err);
+    const detail = err instanceof Error ? err.message : String(err);
+    console.error("[contact] sendMail", detail, err);
     return NextResponse.json(
       {
         error:
-          "No se pudo enviar el correo. Revisa SMTP_* o la contraseña de aplicación de Gmail.",
+          "No se pudo enviar el correo. Revisa SMTP_* en Vercel y la contraseña de aplicación de Gmail (ver logs del despliegue).",
       },
       { status: 502 },
     );
