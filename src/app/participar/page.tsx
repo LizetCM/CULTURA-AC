@@ -22,12 +22,12 @@ export default function ParticiparPage() {
       <section
         id="aplicar-bolsa"
         className="relative scroll-mt-[4.5rem] border-t border-zinc-200/80 bg-surface-muted py-12 sm:py-16 md:py-20 dark:border-zinc-800 dark:bg-zinc-900/40"
-        aria-label="Formulario y convocatorias de bolsa de trabajo"
+        aria-label="Formulario y convocatorias"
       >
         <Container>
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-green-900/85 dark:text-green-200/90">
-              Bolsa de trabajo
+              Convocatorias
             </p>
             <h2 className="mt-4 text-balance text-2xl font-bold tracking-tight text-brand-teal sm:text-3xl">
               Consejo consultivo, voluntariado y aplicación
