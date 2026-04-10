@@ -34,13 +34,21 @@ export function Footer() {
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#participar" className="hover:text-zinc-900">
+                  <Link
+                    href="/contratacion-mujeres"
+                    className="hover:text-zinc-900"
+                  >
                     Contratación de mujeres
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#bolsa-de-trabajo" className="hover:text-zinc-900">
+                  <Link href="/bolsa-de-trabajo" className="hover:text-zinc-900">
                     Bolsa de trabajo
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/participar" className="hover:text-zinc-900">
+                    Participar
                   </Link>
                 </li>
                 <li>

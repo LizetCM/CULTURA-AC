@@ -12,7 +12,7 @@ type ParticiparBolsaIntroProps = {
 
 export function ParticiparBolsaIntro({
   className,
-  ctaHref = "/#bolsa-de-trabajo",
+  ctaHref = "/bolsa-de-trabajo",
   titleAs = "h1",
 }: ParticiparBolsaIntroProps) {
   const TitleTag = titleAs;

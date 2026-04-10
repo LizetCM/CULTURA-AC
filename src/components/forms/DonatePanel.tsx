@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
 
 const PRESETS = [100, 500, 1000, 2500] as const;
@@ -18,11 +18,12 @@ type DonatePanelProps = {
   onMostrarFormulario?: () => void;
 };
 
+const btnPrimary =
+  "inline-flex h-11 items-center justify-center rounded-full bg-zinc-900 px-6 text-sm font-medium text-white transition hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900/30 dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200";
+
 export function DonatePanel({ onMostrarFormulario }: DonatePanelProps) {
   const [custom, setCustom] = useState("");
   const [selected, setSelected] = useState<number | null>(500);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
   const [correoAbierto, setCorreoAbierto] = useState(false);
 
   const amount = useMemo(() => {
@@ -38,36 +39,6 @@ export function DonatePanel({ onMostrarFormulario }: DonatePanelProps) {
     );
     return `mailto:${site.contact.email}?subject=${subject}&body=${body}`;
   }, [amount]);
-
-  async function payStripe() {
-    setError("");
-    const m = amount;
-    if (m == null) {
-      setError("Elige un monto rápido o escribe un monto válido (mín. $50 MXN).");
-      return;
-    }
-    setLoading(true);
-    try {
-      const res = await fetch("/api/checkout", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amountMxn: m }),
-      });
-      const data = (await res.json()) as { url?: string; message?: string; error?: string };
-      if (!res.ok) {
-        setError(
-          data.message ||
-            "Pagos con tarjeta no están activos. Usa la opción por correo.",
-        );
-        return;
-      }
-      if (data.url) window.location.href = data.url;
-    } catch {
-      setError("No se pudo iniciar el pago. Intenta de nuevo.");
-    } finally {
-      setLoading(false);
-    }
-  }
 
   return (
     <div className="space-y-8">
@@ -125,9 +96,9 @@ export function DonatePanel({ onMostrarFormulario }: DonatePanelProps) {
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-        <Button type="button" disabled={loading} onClick={payStripe}>
-          {loading ? "Redirigiendo…" : "Pagar con Stripe"}
-        </Button>
+        <a href={mailtoHref} className={cn(btnPrimary)}>
+          Abrir correo para donar
+        </a>
         <button
           type="button"
           onClick={() => {
@@ -136,21 +107,15 @@ export function DonatePanel({ onMostrarFormulario }: DonatePanelProps) {
           }}
           className="inline-flex h-11 items-center justify-center rounded-full border border-zinc-200 px-6 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-900"
         >
-          Enviar datos por correo
+          Usar formulario web
         </button>
       </div>
-
-      {error ? (
-        <p className="text-sm text-red-600 dark:text-red-400" role="alert">
-          {error}
-        </p>
-      ) : null}
 
       {correoAbierto ? (
         <div className="space-y-6 border-t border-zinc-200 pt-8 dark:border-zinc-700">
           <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-            Abre tu correo con el botón verde o completa el formulario que
-            aparece al lado (o abajo en el móvil) con el mismo propósito.
+            También puedes usar el botón verde o el formulario al lado (o abajo
+            en el móvil) con el mismo propósito.
           </p>
           <a
             href={mailtoHref}

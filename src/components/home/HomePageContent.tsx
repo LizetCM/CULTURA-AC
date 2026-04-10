@@ -4,9 +4,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/home/Reveal";
 import { cn } from "@/lib/cn";
-import { BolsaDeTrabajoBody } from "@/components/bolsa/BolsaDeTrabajoBody";
 import { ContactPanel } from "@/components/contact/ContactPanel";
-import { ParticiparBolsaIntro } from "@/components/participar/ParticiparBolsaIntro";
 import {
   colaboradores,
   colaboradorCategoryLabels,
@@ -290,44 +288,6 @@ export function HomePageContent() {
                 </article>
               </Reveal>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      <section
-        id="participar"
-        className="bg-white py-16 sm:py-20 md:py-24 dark:bg-zinc-950"
-        aria-label="Contratación de mujeres y participación"
-      >
-        <ParticiparBolsaIntro
-          ctaHref="/#bolsa-de-trabajo"
-          titleAs="h2"
-        />
-      </section>
-
-      <section
-        id="bolsa-de-trabajo"
-        className="border-y border-zinc-200/80 bg-surface-muted py-16 sm:py-20 md:py-24 dark:border-zinc-800 dark:bg-zinc-900/40"
-        aria-labelledby="bolsa-en-inicio-heading"
-      >
-        <Container>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-green-900/85 dark:text-green-200/90">
-              Bolsa de trabajo
-            </p>
-            <h2
-              id="bolsa-en-inicio-heading"
-              className="mt-4 text-balance text-3xl font-bold tracking-tight text-brand-teal sm:text-4xl"
-            >
-              Consejo consultivo, voluntariado y aplicación
-            </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-pretty text-base leading-relaxed text-zinc-700 sm:text-lg">
-              Elige el perfil o línea en el formulario y adjunta tu CV en PDF.
-              Si tienes dudas, escríbenos desde la sección de contacto.
-            </p>
-          </div>
-          <div className="mx-auto mt-12 max-w-4xl">
-            <BolsaDeTrabajoBody showCrossLinks={false} />
           </div>
         </Container>
       </section>

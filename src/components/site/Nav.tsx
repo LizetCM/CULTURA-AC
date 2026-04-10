@@ -32,7 +32,7 @@ export function Nav({ className }: { className?: string }) {
           <ButtonLink href="/donaciones" variant="outline" size="sm">
             Donar
           </ButtonLink>
-          <ButtonLink href="/#participar" variant="primary" size="sm">
+          <ButtonLink href="/participar" variant="primary" size="sm">
             Participar
           </ButtonLink>
         </div>

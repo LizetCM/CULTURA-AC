@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ParticiparBolsaIntro } from "@/components/participar/ParticiparBolsaIntro";
 import { PageShell } from "@/components/site/PageShell";
 import { Card } from "@/components/ui/Card";
 import { ButtonLink } from "@/components/ui/Button";
@@ -34,7 +35,11 @@ export default function ContratacionMujeresPage() {
       title="Contratación de mujeres"
       subtitle="Conectamos organizaciones con talento femenino en cultura, educación y desarrollo social. Priorizamos condiciones justas, seguridad y enfoque de género."
     >
-      <section className="rounded-2xl bg-brand-teal px-6 py-8 text-brand-teal-foreground sm:px-8 sm:py-10">
+      <div className="border-b border-zinc-200/80 pb-12 dark:border-zinc-800">
+        <ParticiparBolsaIntro titleAs="h2" />
+      </div>
+
+      <section className="mt-12 rounded-2xl bg-brand-teal px-6 py-8 text-brand-teal-foreground sm:px-8 sm:py-10">
         <h2 className="text-lg font-semibold">Objetivo</h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-white/90">
           Visibilizar y contratar competencias de mujeres y personas con
@@ -72,7 +77,7 @@ export default function ContratacionMujeresPage() {
 
       <p className="mt-12 text-sm text-zinc-500">
         <Link
-          href="/#bolsa-de-trabajo"
+          href="/bolsa-de-trabajo"
           className="font-medium text-brand-teal hover:underline dark:text-accent-cyan"
         >
           Ver bolsa de trabajo

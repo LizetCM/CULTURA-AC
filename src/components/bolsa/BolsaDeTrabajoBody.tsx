@@ -147,7 +147,7 @@ export function BolsaDeTrabajoBody({
       {showCrossLinks ? (
         <p className="text-sm text-zinc-500">
           <Link
-            href="/#participar"
+            href="/contratacion-mujeres"
             className="font-medium text-brand-teal hover:underline dark:text-accent-cyan"
           >
             Contratación de mujeres

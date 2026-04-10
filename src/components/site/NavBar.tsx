@@ -77,8 +77,7 @@ export function NavBar() {
 
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
-            href="/#participar"
-            onClick={(e) => onHashNavClick(e, "/#participar")}
+            href="/participar"
             className={cn(
               "hidden text-sm font-medium transition-colors sm:inline",
               glassOnHero
