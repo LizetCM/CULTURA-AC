@@ -40,11 +40,6 @@ export function Footer() {
                 </li>
                 <li>
                   <Link href="/participar" className="hover:text-zinc-900">
-                    Bolsa de trabajo
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/participar" className="hover:text-zinc-900">
                     Participar
                   </Link>
                 </li>
